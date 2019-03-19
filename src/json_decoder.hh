@@ -22,7 +22,7 @@ function json_decoder<T>(
     $result = json_extract(
         $json,
         true,
-        512,
+        $options['decode_depth_limit'],
         JSON_BIGINT_AS_STRING | JSON_FB_HACK_ARRAYS,
     );
 
