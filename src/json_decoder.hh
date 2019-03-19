@@ -14,6 +14,8 @@ use const JSON_FB_HACK_ARRAYS;
  * @param $mapper may NOT throw and must return either a mapped result or null.
  * @throws `\InvalidArgumentException` if the decode failed.
  * @throws `\InvalidArgumentException` if $json was an empty string and 'empty_string_error' is true.
+ * The option JSON_FB_HACK_ARRAYS is required since varray<_> is a KeyedContainer<_, _> at runtime.
+ * This would break the implementation of `keyed_container_to_shape`.
  */
 function json_decoder<T>(
     string $json,
