@@ -7,6 +7,14 @@ use function json_last_error_msg;
 use const JSON_BIGINT_AS_STRING;
 use const JSON_FB_HACK_ARRAYS;
 
+/**
+ * Takes a string and attempts to `\json_decode` it.
+ * If the decode succeeds the result if returned after $mapper is applied.
+ *
+ * @param $mapper may NOT throw and must return either a mapped result or null.
+ * @throws `\InvalidArgumentException` if the decode failed.
+ * @throws `\InvalidArgumentException` if $json was an empty string and 'empty_string_error' is true.
+ */
 function json_decoder<T>(
     string $json,
     (function(mixed): T) $mapper,

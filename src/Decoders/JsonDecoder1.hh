@@ -4,6 +4,9 @@ namespace Lexidor\Json_Hack;
 use namespace HH\Lib\Str;
 use type InvalidArgumentException;
 
+/**
+ * For documentation see JsonDecoderREADME.md
+ */
 class JsonDecoder1<T as nonnull> {
 
     public function __construct(private (function(mixed): ?T) $mapper1) {}

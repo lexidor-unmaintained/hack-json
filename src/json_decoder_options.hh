@@ -2,6 +2,10 @@
 
 namespace Lexidor\Json_Hack;
 
+/**
+ * A shape that contains all the options that can be used of `json_decoder` and `JsonDecoder(%d+)`.
+ * All options are required to be filled.
+ */
 type json_decoder_options = shape(
     'empty_string_error' => bool,
     'no_mapping_error' => bool,
@@ -9,6 +13,10 @@ type json_decoder_options = shape(
     'decode_depth_limit' => int,
 );
 
+/**
+ * A shape that contains all the options that can be used of `json_decoder` and `JsonDecoder(%d+)`.
+ * A option that is not set may be replaced by the default.
+ */
 type json_decoder_options_default = shape(
     ?'empty_string_error' => bool,
     ?'no_mapping_error' => bool,
@@ -16,7 +24,9 @@ type json_decoder_options_default = shape(
     ?'decode_depth_limit' => int,
 );
 
-
+/**
+ * Transforms an `json_decoder_options_default` into a `json_decoder_options` by applying defaults.
+ */
 function _json_decoder_options_default(
     json_decoder_options_default $options,
 ): json_decoder_options {
