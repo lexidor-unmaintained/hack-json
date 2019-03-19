@@ -18,14 +18,30 @@ class JsonDecoderTest extends HackTest {
     }
 
     <<DataProvider('dataProvider')>>
-    public function test_json_decoder_uses_fb_arrays(
+    public function test_json_decoder_uses_fb_arrays_if_no_mapper_is_given(
         string $json,
         mixed $expected,
     ): void {
-        expect(json_decoder($json, $raw ==> $raw, shape()))->toBeSame(
-            $expected,
-        );
+        expect(json_decoder($json))->toBeSame($expected);
     }
+
+    public function dataProvider2(): vec<(string, mixed)> {
+        return vec[
+            tuple('[]', vec[]),
+            tuple('[1,2,4]', vec[1, 2, 4]),
+            tuple('{}', shape()),
+            tuple('{"key": "value"}', shape('key' => 'value')),
+        ];
+    }
+
+    <<DataProvider('dataProvider2')>>
+    public function test_json_decoder_uses_vec_and_shape_when_a_mapper_is_given(
+        string $json,
+        mixed $expected,
+    ): void {
+        expect(json_decoder($json, $raw ==> $raw))->toBeSame($expected);
+    }
+
 
     public function test_invalid_json_throws_invalid_argument_exception(
     ): void {
@@ -66,7 +82,7 @@ class JsonDecoderTest extends HackTest {
 
     public function test_json_decoder_passes_the_decoded_value_to_mapper(
     ): void {
-        expect(json_decoder('3', $three ==> $three === 3))->toBeTrue();
+        expect(json_decoder('[3]', $three ==> $three === vec[3]))->toBeTrue();
     }
 
     public function test_json_decoder_returns_the_mapped_value(): void {
