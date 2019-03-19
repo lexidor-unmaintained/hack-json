@@ -1,4 +1,4 @@
-<?hh //strict
+<?hh // strict
 namespace Lexidor\Json_Hack\__Private;
 
 type emptyshape = shape(...);

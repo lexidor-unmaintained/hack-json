@@ -1,8 +1,8 @@
-<?hh //strict
+<?hh // strict
 namespace Lexidor\Json_Hack;
 use namespace HH\Lib\Str;
 use type InvalidArgumentException;
-use function json_decode as json_extract;
+use function json_decode;
 use function json_last_error_msg;
 use const JSON_BIGINT_AS_STRING;
 use const JSON_FB_HACK_ARRAYS;
@@ -29,7 +29,7 @@ function json_decoder<T>(
         );
     }
 
-    $result = json_extract(
+    $result = json_decode(
         $json,
         true,
         $options['decode_depth_limit'],
