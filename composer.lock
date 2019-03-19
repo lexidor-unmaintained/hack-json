@@ -1,0 +1,106 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "7fa3063bcb809cbb46489d311e595d13",
+    "packages": [
+        {
+            "name": "hhvm/hhvm-autoload",
+            "version": "v1.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhvm/hhvm-autoload.git",
+                "reference": "5d3fdbf7c203b05e13edab7b4f9981b19877f368"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhvm/hhvm-autoload/zipball/5d3fdbf7c203b05e13edab7b4f9981b19877f368",
+                "reference": "5d3fdbf7c203b05e13edab7b4f9981b19877f368",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "hhvm": "^3.28"
+            },
+            "replace": {
+                "facebook/hhvm-autoload": "1.*"
+            },
+            "require-dev": {
+                "facebook/fbexpect": "^2.1",
+                "hhvm/hacktest": "^1.0"
+            },
+            "bin": [
+                "bin/hh-autoload"
+            ],
+            "type": "composer-plugin",
+            "extra": {
+                "class": [
+                    "Facebook\\AutoloadMap\\ComposerPlugin"
+                ],
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/Writer.php",
+                    "src/"
+                ],
+                "files": [
+                    "src/AutoloadMap.php",
+                    "src/Config.php",
+                    "src/TypeAssert.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "time": "2019-01-22T22:32:09+00:00"
+        },
+        {
+            "name": "hhvm/hsl",
+            "version": "v3.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhvm/hsl.git",
+                "reference": "9a5f26ad5e7c078281f66dd74117af3a3b785e50"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhvm/hsl/zipball/9a5f26ad5e7c078281f66dd74117af3a3b785e50",
+                "reference": "9a5f26ad5e7c078281f66dd74117af3a3b785e50",
+                "shasum": ""
+            },
+            "require": {
+                "hhvm": "^3.30.0",
+                "hhvm/hhvm-autoload": "^1.7"
+            },
+            "require-dev": {
+                "facebook/fbexpect": "^2.0.0",
+                "hhvm/hacktest": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The Hack Standard Library",
+            "time": "2018-12-14T21:18:17+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "hhvm": "^3.30"
+    },
+    "platform-dev": []
+}
