@@ -104,4 +104,33 @@ class JsonDecoderTest extends HackTest {
         );
     }
 
+    public function test_scalar_with_mapper_error_is_not_default(): void {
+        expect(json_decoder('2', $raw ==> $raw))->toBeNull();
+    }
+
+    public function test_scalar_with_mapper_error_throws_invalid_argument_exception(
+    ): void {
+        expect(
+            () ==> json_decoder(
+                '2',
+                $raw ==> $raw,
+                shape('scalar_with_mapper_error' => true),
+            ),
+        )->toThrow(
+            InvalidArgumentException::class,
+            'Explicit error for scalar',
+        );
+    }
+
+    public function test_scalar_with_mapper_error_does_not_throw_when_a_keyed_container_is_decoded(
+    ): void {
+        expect(
+            () ==> json_decoder(
+                '[2]',
+                $raw ==> $raw,
+                shape('scalar_with_mapper_error' => true),
+            ),
+        )->notToThrow();
+    }
+
 }

@@ -54,9 +54,18 @@ function json_decoder<T>(
     }
 
     if ($mapper is nonnull) {
-        trigger_error(
-            'Json decode resulted in a scalar value, but a mapper was supplied. Returning null out of pity.',
-        );
+        if ($options['scalar_with_mapper_error']) {
+            throw new InvalidArgumentException(Str\format(
+                'Explicit error for scalar decode when KeyedContainer<_, _> was expected, got %s',
+                $result === null
+                    ? 'null'
+                    : (
+                        $result is bool
+                            ? ($result ? 'true' : 'false')
+                            : (string)$result
+                    ),
+            ));
+        }
         /*HH_IGNORE_ERROR[4110] T is required to allow null.*/
         return null;
     }

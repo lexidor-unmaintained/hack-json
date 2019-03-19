@@ -11,6 +11,7 @@ type json_decoder_options = shape(
     'no_mapping_error' => bool,
     'decode_exclusive' => bool,
     'decode_depth_limit' => int,
+    'scalar_with_mapper_error' => bool,
 );
 
 /**
@@ -22,6 +23,7 @@ type json_decoder_options_default = shape(
     ?'no_mapping_error' => bool,
     ?'decode_exclusive' => bool,
     ?'decode_depth_limit' => int,
+    ?'scalar_with_mapper_error' => bool,
 );
 
 /**
@@ -34,5 +36,6 @@ function _json_decoder_options_default(
     $options['no_mapping_error'] ??= true;
     $options['decode_exclusive'] ??= false;
     $options['decode_depth_limit'] ??= 512;
+    $options['scalar_with_mapper_error'] ??= false;
     return $options;
 }
