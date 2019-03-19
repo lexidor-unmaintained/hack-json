@@ -7,6 +7,12 @@ use type InvalidArgumentException;
 
 class JsonDecoderTest extends HackTest {
 
+    public function test_assert_shapes_are_still_php_arrays(): void {
+        expect(shape())->toBeSame(
+            array(),
+            'Most if not all tests will become nonsensical if shapes become dicts at runtime.',
+        );
+    }
 
     public function dataProvider(): vec<(string, mixed)> {
         return vec[
@@ -31,6 +37,10 @@ class JsonDecoderTest extends HackTest {
             tuple('[1,2,4]', vec[1, 2, 4]),
             tuple('{}', shape()),
             tuple('{"key": "value"}', shape('key' => 'value')),
+            tuple(
+                '{"0": [], "2": {"1": [{"5": []}]}}',
+                array(0 => vec[], 2 => array(1 => vec[array(5 => vec[])])),
+            ),
         ];
     }
 
