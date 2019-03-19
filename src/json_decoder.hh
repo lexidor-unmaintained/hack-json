@@ -5,6 +5,7 @@ use type InvalidArgumentException;
 use function json_decode as json_extract;
 use function json_last_error_msg;
 use const JSON_BIGINT_AS_STRING;
+use const JSON_FB_HACK_ARRAYS;
 
 function json_decoder<T>(
     string $json,
@@ -18,7 +19,12 @@ function json_decoder<T>(
         );
     }
 
-    $result = json_extract($json, true, 512, JSON_BIGINT_AS_STRING);
+    $result = json_extract(
+        $json,
+        true,
+        512,
+        JSON_BIGINT_AS_STRING | JSON_FB_HACK_ARRAYS,
+    );
 
     if ($result === null && $json !== 'null' && Str\length($json) !== 0) {
         throw new InvalidArgumentException(Str\format(
