@@ -10,9 +10,9 @@ use namespace HH\Lib\C;
 class JsonDecoder3<T1 as nonnull, T2 as nonnull, T3 as nonnull> {
 
     public function __construct(
-        private (function(mixed): ?T1) $mapper1,
-        private (function(mixed): ?T2) $mapper2,
-        private (function(mixed): ?T3) $mapper3,
+        private (function(KeyedContainer<arraykey, mixed>): ?T1) $mapper1,
+        private (function(KeyedContainer<arraykey, mixed>): ?T2) $mapper2,
+        private (function(KeyedContainer<arraykey, mixed>): ?T3) $mapper3,
     ) {}
 
     public function decode(

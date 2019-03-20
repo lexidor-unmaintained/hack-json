@@ -10,7 +10,7 @@
 ## Interface
 
 ### __construct(): JsonDecoder(%d+)
-Takes %d parameters of type `(function(mixed): Tyourchoice)` where `Tyourchoice` may be different for each argument.
+Takes %d parameters of type `(function(KeyedContainer<arraykey, mixed>): Tyourchoice)` where `Tyourchoice` may be different for each argument.
 
 ### decode(string, json_decoder_options): Tuple<?T1, ..., ?Tn>
 Attempts to decode arg1 and will try all mappers given in the constructor.
@@ -32,7 +32,7 @@ If you would need to for some reason (the API is probably doing to much), you co
 In order to make JsonDecoder(`n`) take JsonDecoder(`n`-1) and follow this checklist:
 * Update the classname from `n`-1 to `n`.
 * Update the generics list to include T`n`.
-* Change the arity of `__construct` to `n` by adding the parameter with the type `(function(mixed): ?Tn)` at the last position.
+* Change the arity of `__construct` to `n` by adding the parameter with the type `(function(KeyedContainer<arraykey, mixed>): ?Tn)` at the last position.
 * Change the return of decode from (T1, ..., T`n-1`) to (T1, ..., T`n`).
 * Add `$this->mapper(n)` to the `$mapping` tuple.
 * In the `options['no_mapping_error']` check, add $decoded[`n`-1].

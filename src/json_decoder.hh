@@ -24,7 +24,7 @@ use const JSON_FB_HACK_ARRAYS;
  */
 function json_decoder<T>(
     string $json,
-    ?(function(mixed): T) $mapper = null,
+    ?(function(KeyedContainer<arraykey, mixed>): T) $mapper = null,
     json_decoder_options_default $options = shape(),
 ): T {
     $options = _json_decoder_options_default($options);
@@ -50,6 +50,7 @@ function json_decoder<T>(
 
     if ($mapper is nonnull && $result is KeyedContainer<_, _>) {
         $result = hack_array_to_shape_preserve_vec($result);
+        /*HH_IGNORE_ERROR[4110] The KeyedContainer interface does not specify that keys are arraykeys, but hack arrays require that.*/
         return $mapper($result);
     }
 

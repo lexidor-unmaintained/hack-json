@@ -6,8 +6,8 @@ use namespace HH\Lib\Str;
 
 class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
     public function __construct(
-        private (function(mixed): ?T1) $mapper1,
-        private (function(mixed): ?T2) $mapper2,
+        private (function(KeyedContainer<arraykey, mixed>): ?T1) $mapper1,
+        private (function(KeyedContainer<arraykey, mixed>): ?T2) $mapper2,
     ) {}
     public function decode(
         string $json,

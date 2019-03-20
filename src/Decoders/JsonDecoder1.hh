@@ -9,7 +9,9 @@ use type InvalidArgumentException;
  */
 class JsonDecoder1<T as nonnull> {
 
-    public function __construct(private (function(mixed): ?T) $mapper1) {}
+    public function __construct(
+        private (function(KeyedContainer<arraykey, mixed>): ?T) $mapper1,
+    ) {}
 
     public function decode(
         string $json,
