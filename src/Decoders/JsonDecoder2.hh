@@ -11,7 +11,7 @@ class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
         private (function(KeyedContainer<arraykey, mixed>): ?T2) $mapper2,
     ) {}
 
-    <<Throwing(vec['DomainException', 'InvalidArgementException'])>>
+    <<Throws(vec['DomainException', 'InvalidArgementException'])>>
     public function decode(
         string $json,
         json_decoder_options_default $options = shape(),
