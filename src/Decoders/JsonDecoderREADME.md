@@ -26,3 +26,15 @@ Since `decode_exclusive` guarantees that at max mapper may succeed the real retu
 
 
 Since `decode_exclusive` and `no_mapping_error` together guarantee that at one mapper will succeed the real return type of `decode` becomes `(Tany, null, null, null)` where Tany may be in any slot.
+
+## How to make JsonDecoder5 and up
+If you would need to for some reason (the API is probably doing to much), you could make JsonDecoder(`n`) where `n` is any positive integer.
+In order to make JsonDecoder(`n`) take JsonDecoder(`n`-1) and follow this checklist:
+* Update the classname from `n`-1 to `n`.
+* Update the generics list to include T`n`.
+* Change the arity of `__construct` to `n` by adding the parameter with the type `(function(mixed): ?Tn)` at the last position.
+* Change the return of decode from (T1, ..., T`n-1`) to (T1, ..., T`n`).
+* Add `$this->mapper(n)` to the `$mapping` tuple.
+* In the `options['no_mapping_error']` check, add $decoded[`n`-1].
+* In the "All %d decodes" exception update the `n-1` argument to `n`.
+* Add `$decodes[n]` to the Vec\filter_nulls() call.
