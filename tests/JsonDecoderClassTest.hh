@@ -31,7 +31,7 @@ class JsonDecoderClassTest extends HackTest {
         $decoder1 = new JsonDecoder1($_ ==> null);
         expect(() ==> $decoder1->decode('{"a": 1}'))->toThrow(
             DomainException::class,
-            'decodes have failed for decode',
+            'decodes have failed for',
         );
     }
 
@@ -40,7 +40,7 @@ class JsonDecoderClassTest extends HackTest {
         $decoder2 = new JsonDecoder2($_ ==> null, $_ ==> null);
         expect(() ==> $decoder2->decode('{"a": 1}'))->toThrow(
             DomainException::class,
-            'decodes have failed for decode',
+            'decodes have failed for',
         );
     }
 
