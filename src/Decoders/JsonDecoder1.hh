@@ -20,13 +20,13 @@ class JsonDecoder1<T as nonnull> {
         if ($options['no_mapping_error'] && $decoded === null) {
             throw new InvalidArgumentException(
                 Str\format(
-                    'All decodes %d have failed for %s',
+                    'All %d decodes have failed for %s',
                     1,
                     __FUNCTION__,
                 ),
             );
         }
-        return json_decoder($json, $this->mapper1, $options);
+        return $decoded;
     }
 
 }
