@@ -12,7 +12,7 @@ function example(): noreturn {
 
     //Let's pretend to curl an api.
     $apiResponse = \json_encode(
-        ['success' => 1, 'username' => 'Lexidor', 'repo' => 'hack-json'],
+        ['success' => true, 'username' => 'Lexidor', 'repo' => 'hack-json'],
     );
 
     /*
@@ -51,6 +51,7 @@ function example(): noreturn {
         //The result was (as expected) ['success' => 1, 'username' => 'Lexidor', 'repo' => 'hack-json']
         //These fields are now available using autocomplete
         //$normal[] ('success' 'username' 'repo')
+        echo 'User loaded...';
     }
 
     //We don't need to use elseif here, since we use decode_exclusive.
