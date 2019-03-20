@@ -12,8 +12,10 @@ use const JSON_FB_HACK_ARRAYS;
 /**
  * Takes a string and attempts to `\json_decode` it.
  * If the decode succeeds the result if returned after $mapper is applied.
- * If mapper is not supplied the returned value will contain dicts AND vecs where applicable.
- * If mapper is supplied, the returned value will contain shapes AND vecs where applicable.
+ * If `$mapper` is not supplied or null the returned value will contain dicts and vecs where applicable.
+ * If `$mapper` is supplied and nonnull, the returned value will contain shapes and vecs where applicable.
+ * If the `$json` decodes to (null|string|bool|num), the `$mapper` is ignored and null will be returned.
+ * If the `$json` decodes to (null|string|bool|num) and the `$mapper` is null or not provided, the raw decoded value will be returned.
  *
  * @param $mapper may NOT throw and must return either a mapped result or null.
  * @throws `\InvalidArgumentException` if the decode failed.

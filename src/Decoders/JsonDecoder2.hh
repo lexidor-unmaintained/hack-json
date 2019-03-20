@@ -4,6 +4,9 @@ namespace Lexidor\Json_Hack;
 use type DomainException;
 use namespace HH\Lib\Str;
 
+/**
+ * For documentation see JsonDecoderREADME.md
+ */
 class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
 
     public function __construct(

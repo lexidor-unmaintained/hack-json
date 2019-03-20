@@ -5,8 +5,8 @@ use namespace HH\Lib\Vec;
 type emptyshape = shape(...);
 
 /**
- * Takes a KeyedContainer and makes it into an `emptyshape`.
- * @throws `\StackOverflowException` if $structure is recursive.
+ * Takes a dict<arraykey, mixed> and makes it into an `emptyshape`.
+ * @throws `\StackOverflowException` if `$dict` is recursive.
  */
 function dict_to_shape<Tdontcare>(dict<arraykey, mixed> $dict): emptyshape {
     $output = shape();
@@ -17,6 +17,11 @@ function dict_to_shape<Tdontcare>(dict<arraykey, mixed> $dict): emptyshape {
     return $output;
 }
 
+/**
+ * Takes any argument and recursively makes dicts a shape.
+ * The `$structure` may not contain anything other than (dict|vec|string|vec|bool|null).
+ * If illegal types are contained within `$strcuture` they'll be left alone.
+ */
 function hack_array_to_shape_preserve_vec(mixed $structure): mixed {
     if ($structure is vec<_>) {
         return Vec\map($structure, $v ==> hack_array_to_shape_preserve_vec($v));

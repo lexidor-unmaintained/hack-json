@@ -6,7 +6,9 @@ use namespace HH\Lib\Str;
 use namespace HH\Lib\Vec;
 use namespace HH\Lib\C;
 
-
+/**
+ * For documentation see JsonDecoderREADME.md
+ */
 class JsonDecoder3<T1 as nonnull, T2 as nonnull, T3 as nonnull> {
 
     public function __construct(
