@@ -20,7 +20,7 @@ function dict_to_shape<Tdontcare>(dict<arraykey, mixed> $dict): emptyshape {
 /**
  * Takes any argument and recursively makes dicts a shape.
  * The `$structure` may not contain anything other than (dict|vec|string|vec|bool|null).
- * If illegal types are contained within `$strcuture` they'll be left alone.
+ * If illegal types are contained within `$structure` they'll be left alone.
  */
 function hack_array_to_shape_preserve_vec(mixed $structure): mixed {
     if ($structure is vec<_>) {
