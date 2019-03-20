@@ -36,7 +36,7 @@ function example(): noreturn {
     );
 
     /*
-     * We expect at least of these three results and if none match an exception should be thrown.
+     * We expect at least one of these three results and if none match an exception should be thrown.
      * This is the default, but you could turn it off by setting 'no_mapping_error' to false.
      * We expect that no more than one of the results are valid. If more than one is valid, the API has changed.
      * By default this is not an exception, but we will turn this on by using 'decode_exclusive'.
