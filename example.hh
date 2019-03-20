@@ -20,7 +20,7 @@ function example(): noreturn {
      * {"success" => bool, "username" => string, "repo" => string}
      * {"success" => bool, "reason" => string}
      * {"success" => bool, "timeout" => int}
-     * And each of them might receive moe fields in the future without break BC.
+     * And each of them might receive more fields in the future without break BC.
      */
 
     $decoder = new JsonDecoder3(
