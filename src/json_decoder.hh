@@ -18,7 +18,7 @@ use const JSON_FB_HACK_ARRAYS;
  * @param $mapper may NOT throw and must return either a mapped result or null.
  * @throws `\InvalidArgumentException` if the decode failed.
  * @throws `\DomainException` if $json was an empty string and 'empty_string_error' is true.
- * The option JSON_FB_HACK_ARRAYS is required since varray<_> is a KeyedContainer<_, _> at runtime and there is no differnce between darray<_, _> and varray<_>.
+ * The option JSON_FB_HACK_ARRAYS is required since varray<_> is a KeyedContainer<_, _> at runtime and there is no difference between darray<_, _> and varray<_>.
  */
 <<Throws(vec['DomainException', 'InvalidArgementException'])>>
 function json_decoder<T>(
