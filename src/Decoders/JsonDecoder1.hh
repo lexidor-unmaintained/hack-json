@@ -23,11 +23,7 @@ class JsonDecoder1<T as nonnull> {
 
         if ($options['no_mapping_error'] && $decoded === null) {
             throw new DomainException(
-                Str\format(
-                    'All %d decodes have failed for %s',
-                    1,
-                    __FUNCTION__,
-                ),
+                Str\format('All %d decodes have failed for %s', 1, __METHOD__),
             );
         }
 

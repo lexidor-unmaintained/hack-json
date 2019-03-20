@@ -28,11 +28,7 @@ class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
             $decoded[1] === null
         ) {
             throw new DomainException(
-                Str\format(
-                    'All %d decodes have failed for %s',
-                    2,
-                    __FUNCTION__,
-                ),
+                Str\format('All %d decodes have failed for %s', 2, __METHOD__),
             );
         }
 

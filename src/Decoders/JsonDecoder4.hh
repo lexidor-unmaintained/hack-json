@@ -41,11 +41,7 @@ class JsonDecoder4<T1 as nonnull, T2 as nonnull, T3 as nonnull, T4 as nonnull> {
             $decoded[3] === null
         ) {
             throw new DomainException(
-                Str\format(
-                    'All %d decodes have failed for %s',
-                    4,
-                    __FUNCTION__,
-                ),
+                Str\format('All %d decodes have failed for %s', 4, __METHOD__),
             );
         }
 
