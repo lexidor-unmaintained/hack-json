@@ -14,7 +14,7 @@ class JsonDecoderClassTest extends HackTest {
         expect($decoder->decode('[1,2,3,4,5]'))->toBeTrue();
     }
 
-    <<DataProvider('dataProvider012')>>
+    <<DataProvider('dataProvider01234')>>
     public function test_json_decoder_class_doesnt_catch_the_exceptions_thrown_by_json_decoder(
         dynamic $decoder,
     ): void {
@@ -86,26 +86,46 @@ class JsonDecoderClassTest extends HackTest {
         expect($decoder1->decode('{}'))->toBeSame(shape());
     }
 
-
     public function test_json_decoder2_and_up_class_do_not_preserve_dicts(
     ): void {
         $decoder2 = new JsonDecoder2($raw ==> $raw, $raw ==> $raw);
         expect($decoder2->decode('{}'))->toBeSame(tuple(shape(), shape()));
     }
-    public function dataProvider012(): vec<(mixed)> {
+
+    public function test_json_decoder_3_and_up_class_print_the_success_amount_in_decoded_exclusive(
+    ): void {
+        $rf = $raw ==> $raw;
+        $decoder3 = new JsonDecoder3($rf, $rf, $rf);
+        expect(
+            () ==> $decoder3->decode('[]', shape('decode_exclusive' => true)),
+        )->toThrow(
+            InvariantException::class,
+            'but 3 mappers returned a nonnull value.',
+        );
+    }
+
+    public function test_json_decoder_4_and_up_class_print_the_success_amount_in_decoded_exclusive(
+    ): void {
+        $rf = $raw ==> $raw;
+        $ff = $_ ==> null;
+        $decoder3 = new JsonDecoder4($rf, $rf, $ff, $ff);
+        expect(
+            () ==> $decoder3->decode('[]', shape('decode_exclusive' => true)),
+        )->toThrow(
+            InvariantException::class,
+            'but 2 mappers returned a nonnull value.',
+        );
+    }
+
+    public function dataProvider01234(): vec<(mixed)> {
         $rawFunc = $raw ==> $raw;
         return vec[
             tuple(new JsonDecoder0()),
             tuple(new JsonDecoder1($rawFunc)),
             tuple(new JsonDecoder2($rawFunc, $rawFunc)),
+            tuple(new JsonDecoder3($rawFunc, $rawFunc, $rawFunc)),
+            tuple(new JsonDecoder4($rawFunc, $rawFunc, $rawFunc, $rawFunc)),
         ];
     }
 
-    public function dataProvider12(): vec<(mixed)> {
-        $rawFunc = $raw ==> $raw;
-        return vec[
-            tuple(new JsonDecoder1($rawFunc)),
-            tuple(new JsonDecoder2($rawFunc, $rawFunc)),
-        ];
-    }
 }
