@@ -31,8 +31,7 @@ function example(): noreturn {
             ...
         ),
         $error ==> $error ?as shape("success" => bool, "reason" => string, ...),
-        $timeout ==> $timeout ?as
-            shape("success" => bool, "timeout" => int, ...),
+        $timeout ==> $timeout ?as shape("success" => bool, "timeout" => int, ...),
     );
 
     /*
