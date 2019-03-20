@@ -21,6 +21,12 @@ If the option `decode_exclusive` was set no more than 1 mapper is allowed to suc
 If the option `no_mapping_error` was set at least 1 mapper is required to succeed.
 When both options are given only 1 mapper may succeed.
 
+## Dict vs Shape
+If you use JsonDecoder(`n`) where `n` > 0. All dicts will become shapes before they are being passed to your mapper function.
+If you use JsonDecoder0 or json_decoder without a second argument (or with the second argument as null), you'll receive dicts.
+The rationale behind this decision was, if you use mappers, you don't need the runtime exception for out of bounds reads.
+If you wanted to json_decode without knowning the return of the API, you could really benefit from having the runtime enforcement.
+
 ## Special case
 Since `decode_exclusive` guarantees that at max mapper may succeed the real return type of `decode` becomes `(?Tany, null, null, null)` where Tany may be in any slot.
 
