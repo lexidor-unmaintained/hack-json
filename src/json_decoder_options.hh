@@ -25,7 +25,7 @@ type json_decoder_options_default = shape(
     ?'no_mapping_error' => bool,
     //Should the JsonDecoder(%d) require that nomore than one decode operation returns a nonnull value? (Has no effect is %d <= 1)
     ?'decode_exclusive' => bool,
-    //How deep should json_decoder try to go before giving up? 
+    //How deep should json_decoder try to go before giving up?
     ?'decode_depth_limit' => int,
     //Should json_decoder throw an InvalidArgumentException if the json decodes to a scalar and a mapper was provided? (Has no effect when %d === 0)
     ?'scalar_with_mapper_error' => bool,

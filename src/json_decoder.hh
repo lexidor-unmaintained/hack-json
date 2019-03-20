@@ -1,11 +1,9 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 use namespace HH\Lib\Str;
-use namespace HH\Lib\Map;
 use type InvalidArgumentException;
 use function json_decode;
 use function json_last_error_msg;
-use function trigger_error;
 use function Lexidor\Json_Hack\__Private\hack_array_to_shape_preserve_vec;
 use const JSON_BIGINT_AS_STRING;
 use const JSON_FB_HACK_ARRAYS;

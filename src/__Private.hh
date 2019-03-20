@@ -1,10 +1,7 @@
 <?hh // strict
 namespace Lexidor\Json_Hack\__Private;
 use namespace HH\Lib\Vec;
-use namespace HH\Lib\Str;
 use namespace HH\Lib\Dict;
-use function get_class;
-use type InvalidArgumentException;
 
 type emptyshape = shape(...);
 

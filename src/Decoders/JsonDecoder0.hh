@@ -1,8 +1,6 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 
-use namespace HH\Lib\Str;
-use type InvalidArgumentException;
 // use function HH\invaraint;
 
 /**

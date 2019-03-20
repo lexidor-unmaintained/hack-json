@@ -4,5 +4,15 @@
         "tests/"
     ],
     "builtinLinters": "all",
-    "disableAllAutoFixes": true
+    "disableAllAutoFixes": true,
+    "overrides": [
+        {
+            "patterns": [
+                "tests/*"
+            ],
+            "disabledLinters": [
+                "Facebook\\HHAST\\Linters\\CamelCasedMethodsUnderscoredFunctionsLinter"
+            ]
+        }
+    ]
 }
