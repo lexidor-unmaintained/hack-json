@@ -3,6 +3,9 @@ namespace Lexidor\Json_Hack\Example;
 
 use type Lexidor\Json_Hack\JsonDecoder3;
 use namespace HH\Lib\Str;
+use function trigger_error;
+use type DomainException;
+use type InvalidArgumentException;
 
 <<__EntryPoint>>
 function example(): noreturn {
@@ -43,8 +46,24 @@ function example(): noreturn {
      * By using these two together we enforce that 1 and only one must succeed.
      */
 
-    list($normal, $error, $timeout) =
-        $decoder->decode($apiResponse, shape('decode_exclusive' => true));
+    try {
+        list($normal, $error, $timeout) =
+            $decoder->decode($apiResponse, shape('decode_exclusive' => true));
+    } catch (DomainException $e) {
+        \trigger_error(Str\format(
+            'API %s: did not meet expectations. Error: %s',
+            $endpoint,
+            $e->__toString(),
+        ));
+        exit(1);
+    } catch (InvalidArgumentException $e) {
+        trigger_error(Str\format(
+            'Json from endpoint %s could not be decoded. Error: %s',
+            $endpoint,
+            $e->__toString(),
+        ));
+        exit(1);
+    }
 
     if ($normal !== null) {
         //The result was (as expected) ['success' => 1, 'username' => 'Lexidor', 'repo' => 'hack-json']
