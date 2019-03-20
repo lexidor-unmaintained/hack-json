@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cad5e13339e1a7303377894e9cc36105",
+    "content-hash": "4ebc739e54d65f78fdedee8f6c391559",
     "packages": [
         {
             "name": "hhvm/hhvm-autoload",
@@ -91,6 +91,47 @@
             ],
             "description": "The Hack Standard Library",
             "time": "2018-12-14T21:18:17+00:00"
+        },
+        {
+            "name": "hhvm/type-assert",
+            "version": "v3.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hhvm/type-assert.git",
+                "reference": "ab4d907d5fd4894a6833b5926cafc9fb9c894ff9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hhvm/type-assert/zipball/ab4d907d5fd4894a6833b5926cafc9fb9c894ff9",
+                "reference": "ab4d907d5fd4894a6833b5926cafc9fb9c894ff9",
+                "shasum": ""
+            },
+            "require": {
+                "hhvm": "^3.29.0",
+                "hhvm/hhvm-autoload": "^1.4",
+                "hhvm/hsl": "^3.29.0"
+            },
+            "require-dev": {
+                "facebook/fbexpect": "^2.0.0",
+                "hhvm/hacktest": "^1.0",
+                "hhvm/hhast": "^3.27"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Convert untyped data to typed data",
+            "keywords": [
+                "TypeAssert",
+                "hack"
+            ],
+            "time": "2018-12-14T23:24:44+00:00"
         }
     ],
     "packages-dev": [
@@ -272,47 +313,6 @@
             ],
             "description": "The Hack Standard Library - Experimental Additions",
             "time": "2019-03-04T21:36:02+00:00"
-        },
-        {
-            "name": "hhvm/type-assert",
-            "version": "v3.2.6",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/hhvm/type-assert.git",
-                "reference": "ab4d907d5fd4894a6833b5926cafc9fb9c894ff9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/hhvm/type-assert/zipball/ab4d907d5fd4894a6833b5926cafc9fb9c894ff9",
-                "reference": "ab4d907d5fd4894a6833b5926cafc9fb9c894ff9",
-                "shasum": ""
-            },
-            "require": {
-                "hhvm": "^3.29.0",
-                "hhvm/hhvm-autoload": "^1.4",
-                "hhvm/hsl": "^3.29.0"
-            },
-            "require-dev": {
-                "facebook/fbexpect": "^2.0.0",
-                "hhvm/hacktest": "^1.0",
-                "hhvm/hhast": "^3.27"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Convert untyped data to typed data",
-            "keywords": [
-                "TypeAssert",
-                "hack"
-            ],
-            "time": "2018-12-14T23:24:44+00:00"
         }
     ],
     "aliases": [],

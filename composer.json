@@ -2,7 +2,8 @@
     "require": {
         "hhvm/hsl": "^3.30",
         "hhvm/hhvm-autoload": "^1",
-        "hhvm": "^3.30"
+        "hhvm": "^3.30",
+        "hhvm/type-assert": "^3.2"
     },
     "require-dev": {
         "hhvm/hacktest": "^1.3",
