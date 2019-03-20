@@ -3,7 +3,9 @@ namespace Lexidor\Json_Hack;
 use type Facebook\HackTest\HackTest;
 use type Facebook\HackTest\DataProvider;
 use function Facebook\FBExpect\expect;
+use type DomainException;
 use type InvalidArgumentException;
+
 
 class JsonDecoderTest extends HackTest {
 
@@ -53,8 +55,7 @@ class JsonDecoderTest extends HackTest {
     }
 
 
-    public function test_invalid_json_throws_invalid_argument_exception(
-    ): void {
+    public function test_invalid_json_throws_domain_exception(): void {
         expect(() ==> json_decoder('{', $raw ==> $raw))->toThrow(
             InvalidArgumentException::class,
             'Syntax error',
@@ -68,13 +69,13 @@ class JsonDecoderTest extends HackTest {
                 $raw ==> $raw,
                 shape('empty_string_error' => true),
             ),
-        )->toThrow(InvalidArgumentException::class);
+        )->toThrow(DomainException::class);
     }
 
     public function test_json_decoder_option_empty_string_error_is_default(
     ): void {
         expect(() ==> json_decoder('', $raw ==> $raw))->toThrow(
-            InvalidArgumentException::class,
+            DomainException::class,
             'Empty string given as',
         );
     }
@@ -118,7 +119,7 @@ class JsonDecoderTest extends HackTest {
         expect(json_decoder('2', $raw ==> $raw))->toBeNull();
     }
 
-    public function test_scalar_with_mapper_error_throws_invalid_argument_exception(
+    public function test_scalar_with_mapper_error_throws_domain_exception(
     ): void {
         expect(
             () ==> json_decoder(
@@ -126,10 +127,7 @@ class JsonDecoderTest extends HackTest {
                 $raw ==> $raw,
                 shape('scalar_with_mapper_error' => true),
             ),
-        )->toThrow(
-            InvalidArgumentException::class,
-            'Explicit error for scalar',
-        );
+        )->toThrow(DomainException::class, 'Explicit error for scalar');
     }
 
     public function test_scalar_with_mapper_error_does_not_throw_when_a_keyed_container_is_decoded(

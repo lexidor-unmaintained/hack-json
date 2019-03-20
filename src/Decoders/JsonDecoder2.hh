@@ -1,14 +1,17 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 
-use type InvalidArgumentException;
+use type DomainException;
 use namespace HH\Lib\Str;
 
 class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
+
     public function __construct(
         private (function(KeyedContainer<arraykey, mixed>): ?T1) $mapper1,
         private (function(KeyedContainer<arraykey, mixed>): ?T2) $mapper2,
     ) {}
+
+    <<Throwing(vec['DomainException', 'InvalidArgementException'])>>
     public function decode(
         string $json,
         json_decoder_options_default $options = shape(),
@@ -24,7 +27,7 @@ class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
             $decoded[0] === null &&
             $decoded[1] === null
         ) {
-            throw new InvalidArgumentException(
+            throw new DomainException(
                 Str\format(
                     'All %d decodes have failed for %s',
                     2,
@@ -38,11 +41,12 @@ class JsonDecoder2<T1 as nonnull, T2 as nonnull> {
             $decoded[0] !== null &&
             $decoded[1] !== null
         ) {
-            invariant_violation(
+            throw new DomainException(
                 'Decode exclusive ought to prevent you from having multiple succesful decodes, but both mappers returned a nonnull value.',
             );
         }
 
         return $decoded;
     }
+
 }

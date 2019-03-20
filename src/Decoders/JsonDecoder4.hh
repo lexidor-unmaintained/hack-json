@@ -1,7 +1,7 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 
-use type InvalidArgumentException;
+use type DomainException;
 use namespace HH\Lib\Str;
 use namespace HH\Lib\Vec;
 use namespace HH\Lib\C;
@@ -14,6 +14,8 @@ class JsonDecoder4<T1 as nonnull, T2 as nonnull, T3 as nonnull, T4 as nonnull> {
         private (function(KeyedContainer<arraykey, mixed>): ?T3) $mapper3,
         private (function(KeyedContainer<arraykey, mixed>): ?T4) $mapper4,
     ) {}
+
+    <<Throwing(vec['DomainException', 'InvalidArgementException'])>>
     public function decode(
         string $json,
         json_decoder_options_default $options = shape(),
@@ -38,7 +40,7 @@ class JsonDecoder4<T1 as nonnull, T2 as nonnull, T3 as nonnull, T4 as nonnull> {
             $decoded[2] === null &&
             $decoded[3] === null
         ) {
-            throw new InvalidArgumentException(
+            throw new DomainException(
                 Str\format(
                     'All %d decodes have failed for %s',
                     4,
@@ -53,11 +55,12 @@ class JsonDecoder4<T1 as nonnull, T2 as nonnull, T3 as nonnull, T4 as nonnull> {
                     vec[$decoded[0], $decoded[1], $decoded[2], $decoded[3]],
                 ),
             );
-            invariant(
-                $succesfullDecodes < 2,
-                'Decode exclusive ought to prevent you from having multiple succesful decodes, but %d mappers returned a nonnull value.',
-                $succesfullDecodes,
-            );
+            if ($succesfullDecodes > 1) {
+                throw new DomainException(Str\format(
+                    'Decode exclusive ought to prevent you from having multiple succesful decodes, but %d mappers returned a nonnull value.',
+                    $succesfullDecodes,
+                ));
+            }
         }
 
         return $decoded;

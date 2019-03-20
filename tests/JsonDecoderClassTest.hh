@@ -3,7 +3,9 @@ namespace Lexidor\Json_Hack;
 use type Facebook\HackTest\HackTest;
 use type Facebook\HackTest\DataProvider;
 use function Facebook\FBExpect\expect;
+use type DomainException;
 use type InvalidArgumentException;
+
 
 class JsonDecoderClassTest extends HackTest {
 
@@ -28,7 +30,7 @@ class JsonDecoderClassTest extends HackTest {
     ): void {
         $decoder1 = new JsonDecoder1($_ ==> null);
         expect(() ==> $decoder1->decode('{"a": 1}'))->toThrow(
-            InvalidArgumentException::class,
+            DomainException::class,
             'decodes have failed for decode',
         );
     }
@@ -37,7 +39,7 @@ class JsonDecoderClassTest extends HackTest {
     ): void {
         $decoder2 = new JsonDecoder2($_ ==> null, $_ ==> null);
         expect(() ==> $decoder2->decode('{"a": 1}'))->toThrow(
-            InvalidArgumentException::class,
+            DomainException::class,
             'decodes have failed for decode',
         );
     }
@@ -71,7 +73,7 @@ class JsonDecoderClassTest extends HackTest {
         expect(
             () ==> $decoder2->decode('[]', shape('decode_exclusive' => true)),
         )->toThrow(
-            InvariantException::class,
+            DomainException::class,
             'Decode exclusive ought to prevent you from having multiple succesful decodes, but both mappers returned a nonnull value.',
         );
     }
@@ -99,7 +101,7 @@ class JsonDecoderClassTest extends HackTest {
         expect(
             () ==> $decoder3->decode('[]', shape('decode_exclusive' => true)),
         )->toThrow(
-            InvariantException::class,
+            DomainException::class,
             'but 3 mappers returned a nonnull value.',
         );
     }
@@ -112,7 +114,7 @@ class JsonDecoderClassTest extends HackTest {
         expect(
             () ==> $decoder3->decode('[]', shape('decode_exclusive' => true)),
         )->toThrow(
-            InvariantException::class,
+            DomainException::class,
             'but 2 mappers returned a nonnull value.',
         );
     }

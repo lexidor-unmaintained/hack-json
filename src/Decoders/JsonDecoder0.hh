@@ -1,8 +1,6 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 
-// use function HH\invaraint;
-
 /**
  * For documentation see JsonDecoderREADME.md
  */

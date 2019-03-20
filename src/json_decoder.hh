@@ -1,6 +1,7 @@
 <?hh // strict
 namespace Lexidor\Json_Hack;
 use namespace HH\Lib\Str;
+use type DomainException;
 use type InvalidArgumentException;
 use function json_decode;
 use function json_last_error_msg;
@@ -16,10 +17,11 @@ use const JSON_FB_HACK_ARRAYS;
  *
  * @param $mapper may NOT throw and must return either a mapped result or null.
  * @throws `\InvalidArgumentException` if the decode failed.
- * @throws `\InvalidArgumentException` if $json was an empty string and 'empty_string_error' is true.
+ * @throws `\DomainException` if $json was an empty string and 'empty_string_error' is true.
  * The option JSON_FB_HACK_ARRAYS is required since varray<_> is a KeyedContainer<_, _> at runtime.
  * This would break the implementation of `keyed_container_to_shape`.
  */
+<<Throwing(vec['DomainException', 'InvalidArgementException'])>>
 function json_decoder<T>(
     string $json,
     ?(function(KeyedContainer<arraykey, mixed>): T) $mapper = null,
@@ -27,7 +29,7 @@ function json_decoder<T>(
 ): T {
     $options = _json_decoder_options_default($options);
     if (Str\length($json) === 0 && $options['empty_string_error']) {
-        throw new InvalidArgumentException(
+        throw new DomainException(
             Str\format('Empty string given as argument to %s', __FUNCTION__),
         );
     }
@@ -54,7 +56,7 @@ function json_decoder<T>(
 
     if ($mapper is nonnull) {
         if ($options['scalar_with_mapper_error']) {
-            throw new InvalidArgumentException(Str\format(
+            throw new DomainException(Str\format(
                 'Explicit error for scalar decode when KeyedContainer<_, _> was expected, got %s',
                 $result === null
                     ? 'null'
